@@ -3,7 +3,10 @@
 &lt;strong&gt;背景场景 → 问题定义 → DCLP 解法 → 现代写法（call_once / magic static）&lt;/strong&gt;。&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;hr&gt;
-&lt;h2 id="idea"&gt;idea&lt;/h2&gt;
+&lt;h2 id="idea"&gt;
+ idea
+ &lt;a class="permalink" href="#idea" aria-label="Permalink"&gt;&lt;/a&gt;
+&lt;/h2&gt;
 &lt;p&gt;DCLP 的核心直觉其实很朴素：&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;很多系统里存在 &lt;strong&gt;快路径 / 慢路径&lt;/strong&gt;：
@@ -29,8 +32,14 @@
 &lt;/ul&gt;
 &lt;p&gt;&lt;strong&gt;一句话&lt;/strong&gt;：DCLP 是一种“减少锁竞争”的模式，但它的正确性取决于&lt;strong&gt;内存模型（happens-before）&lt;/strong&gt;。&lt;/p&gt;
 &lt;hr&gt;
-&lt;h2 id="background--motivation"&gt;Background &amp;amp;&amp;amp; Motivation&lt;/h2&gt;
-&lt;h3 id="背景哪些地方会出现快慢系统"&gt;背景：哪些地方会出现“快慢系统”？&lt;/h3&gt;
+&lt;h2 id="background--motivation"&gt;
+ Background &amp;amp;&amp;amp; Motivation
+ &lt;a class="permalink" href="#background--motivation" aria-label="Permalink"&gt;&lt;/a&gt;
+&lt;/h2&gt;
+&lt;h3 id="背景哪些地方会出现快慢系统"&gt;
+ 背景：哪些地方会出现“快慢系统”？
+ &lt;a class="permalink" href="#%e8%83%8c%e6%99%af%e5%93%aa%e4%ba%9b%e5%9c%b0%e6%96%b9%e4%bc%9a%e5%87%ba%e7%8e%b0%e5%bf%ab%e6%85%a2%e7%b3%bb%e7%bb%9f" aria-label="Permalink"&gt;&lt;/a&gt;
+&lt;/h3&gt;
 &lt;ol&gt;
 &lt;li&gt;
 &lt;p&gt;&lt;strong&gt;单例/全局资源&lt;/strong&gt;（配置中心、日志器、metrics registry、连接池…）&lt;/p&gt;
@@ -59,14 +68,20 @@
 &lt;p&gt;但 AI 解决的不应该只是帮助人类成为更好的全栈工程师。Agent 本身也应该成为读者。道理很简单：人类大脑带宽不足，新时代信息爆炸，读不完、看不完、学不完是常态。一小时的干货视频，消化它远远不止一小时；更别提在不熟悉的语言下，阅读速率就更低了。而 AI 以 token/s 的处理速度远超人类，更重要的是: 尽管人类可能像松鼠，收集了一季的橡果，入冬全忘；但 AI 可以快速&amp;quot;内化&amp;quot;到自己的知识库内, 无论何时, 快速找到这些橡果。&lt;/p&gt;
 &lt;p&gt;然而, 大多数的社交平台都需要另外适配读写工具, 因为 Agent 并不喜欢看到 html 文件, 更别说各种反扒虫机制, 也在阻止个人的 Agent 助手拿到这些信息, 这已经变成信息流动的一种桎梏。&lt;/p&gt;
 &lt;p&gt;所以, 我们需要一个新的博客框架, 对 Agent 更加友好的那种。&lt;/p&gt;
-&lt;h2 id="核心原则"&gt;核心原则&lt;/h2&gt;
+&lt;h2 id="核心原则"&gt;
+ 核心原则
+ &lt;a class="permalink" href="#%e6%a0%b8%e5%bf%83%e5%8e%9f%e5%88%99" aria-label="Permalink"&gt;&lt;/a&gt;
+&lt;/h2&gt;
 &lt;p&gt;在设计这个新框架之前，先定下几条基本原则：&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;strong&gt;AI 友好&lt;/strong&gt;：结构清晰、语义明确，让 Agent 能轻松解析和交互&lt;/li&gt;
 &lt;li&gt;&lt;strong&gt;轻量&lt;/strong&gt;：不依赖重型基础设施，个人就能部署和维护&lt;/li&gt;
 &lt;li&gt;&lt;strong&gt;极简&lt;/strong&gt;：日常只写 Markdown，和写笔记没有区别&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h2 id="什么是-agent-友好的博客"&gt;什么是 Agent 友好的博客&lt;/h2&gt;
+&lt;h2 id="什么是-agent-友好的博客"&gt;
+ 什么是 Agent 友好的博客
+ &lt;a class="permalink" href="#%e4%bb%80%e4%b9%88%e6%98%af-agent-%e5%8f%8b%e5%a5%bd%e7%9a%84%e5%8d%9a%e5%ae%a2" aria-label="Permalink"&gt;&lt;/a&gt;
+&lt;/h2&gt;
 &lt;p&gt;传统博客的读者是人类。Agent 友好的博客则把 Agent 视为&lt;strong&gt;一等公民&lt;/strong&gt;——它们不只是辅助作者写作的工具，更是独立的知识消费者。&lt;/p&gt;
 &lt;p&gt;这意味着博客需要为 Agent 提供：&lt;/p&gt;
 &lt;ul&gt;
@@ -74,21 +89,12 @@
 &lt;li&gt;标准化的身份识别&lt;/li&gt;
 &lt;li&gt;可交互的接口: 操作博客网站内的资源&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h2 id="需求拆解"&gt;需求拆解&lt;/h2&gt;
-&lt;h3 id="agent-cli-交互层"&gt;Agent CLI 交互层&lt;/h3&gt;
-&lt;p&gt;新框架对 Agent CLI 的交互友好，具体包括：&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;DID 身份系统&lt;/strong&gt;：Agent 在这个框架下有自己的去中心化身份&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;RSS 订阅&lt;/strong&gt;：Agent 可以作为订阅读者，自动抓取更新&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;跨站搜索&lt;/strong&gt;：支持 Agent 自己做搜索引擎，聚合多站内容&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;网站级 API&lt;/strong&gt;：允许 Agent 做 CRUD 交互
-&lt;ul&gt;
-&lt;li&gt;读者 Agent：总结、收藏、翻译、提问某篇文章&lt;/li&gt;
-&lt;li&gt;作者 Agent：在 CLI 发布、删除、更新文章&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;REPL 式交互&lt;/strong&gt;：提供注册手段，可以注册个人 Agent，通过网页下方的输入框类似 REPL 和网页交互&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;批注层&lt;/strong&gt;：Agent 可以看到讨论区，参与协作&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h3 id="传统兼容层"&gt;传统兼容层&lt;/h3&gt;
-&lt;p&gt;老框架的优良传统不能丢：&lt;/p&gt;</description></item></channel></rss>
+&lt;h2 id="需求拆解"&gt;
+ 需求拆解
+ &lt;a class="permalink" href="#%e9%9c%80%e6%b1%82%e6%8b%86%e8%a7%a3" aria-label="Permalink"&gt;&lt;/a&gt;
+&lt;/h2&gt;
+&lt;h3 id="agent-cli-交互层"&gt;
+ Agent CLI 交互层
+ &lt;a class="permalink" href="#agent-cli-%e4%ba%a4%e4%ba%92%e5%b1%82" aria-label="Permalink"&gt;&lt;/a&gt;
+&lt;/h3&gt;
+&lt;p&gt;新框架对 Agent CLI 的交互友好，具体包括：&lt;/p&gt;</description></item></channel></rss>
